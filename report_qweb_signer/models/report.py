@@ -108,7 +108,8 @@ class Report(models.Model):
 
     def _signer_bin(self, opts):
         me = os.path.dirname(__file__)
-        java_bin = 'java -jar'
+        java_bin = 'java -jar -Xms40m -Xmx80m -XX:MetaspaceSize=70M ' \
+        '-XX:MaxMetaspaceSize=120M -XX:CompressedClassSpaceSize=100M '
         jar = '{}/../static/jar/jPdfSign.jar'.format(me)
         return '%s %s %s' % (java_bin, jar, opts)
 
